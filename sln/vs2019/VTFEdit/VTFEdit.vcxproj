@@ -19,13 +19,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
@@ -188,6 +188,7 @@ copy "$(SolutionDir)..\..\thirdparty\bin\HLLib.dll" "$(TargetDir)"
       <DependentUpon>..\..\..\VTFEdit\About.h</DependentUpon>
       <LogicalName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VTFEdit.CAbout.resources</LogicalName>
       <LogicalName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VTFEdit.CAbout.resources</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\VTFEdit\BatchConvert.resX">
       <DependentUpon>..\..\..\VTFEdit\BatchConvert.h</DependentUpon>
@@ -203,6 +204,7 @@ copy "$(SolutionDir)..\..\thirdparty\bin\HLLib.dll" "$(TargetDir)"
       <DependentUpon>..\..\..\VTFEdit\VTFEdit.h</DependentUpon>
       <LogicalName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VTFEdit.CVTFEdit.resources</LogicalName>
       <LogicalName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VTFEdit.CVTFEdit.resources</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\VTFEdit\VTFOptions.resX">
       <DependentUpon>..\..\..\VTFEdit\VTFOptions.h</DependentUpon>

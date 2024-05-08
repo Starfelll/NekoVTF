@@ -139,6 +139,7 @@ namespace VTFEdit
 	private: System::Windows::Forms::MenuItem ^  btnOptionsSpace1;
 	private: System::Windows::Forms::MenuItem ^  btnAutoCreateVMTFile;
 	private: System::Windows::Forms::MenuItem ^  btnConvertWADFile;
+	private: System::Windows::Forms::MenuItem ^  btnConvertImageFile;
 	private: System::Windows::Forms::MenuItem ^  btnFileSpace4;
 	private: System::Windows::Forms::MenuItem ^  btnCreateVMTFile;
 	private: System::Windows::Forms::MenuItem ^  btnToolsMenu;
@@ -314,6 +315,7 @@ namespace VTFEdit
 			this->btnCreateVMTFile = (gcnew System::Windows::Forms::MenuItem());
 			this->btnConvertFolder = (gcnew System::Windows::Forms::MenuItem());
 			this->btnConvertWADFile = (gcnew System::Windows::Forms::MenuItem());
+			this->btnConvertImageFile = (gcnew System::Windows::Forms::MenuItem());
 			this->btnOptionsMenu = (gcnew System::Windows::Forms::MenuItem());
 			this->btnAutoCreateVMTFile = (gcnew System::Windows::Forms::MenuItem());
 			this->btnOptionsSpace1 = (gcnew System::Windows::Forms::MenuItem());
@@ -700,9 +702,9 @@ namespace VTFEdit
 			// btnToolsMenu
 			// 
 			this->btnToolsMenu->Index = 3;
-			this->btnToolsMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(3) {
+			this->btnToolsMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(4) {
 				this->btnCreateVMTFile,
-					this->btnConvertFolder, this->btnConvertWADFile
+					this->btnConvertFolder, this->btnConvertWADFile, this->btnConvertImageFile
 			});
 			this->btnToolsMenu->Text = L"&Tools";
 			// 
@@ -723,6 +725,12 @@ namespace VTFEdit
 			this->btnConvertWADFile->Index = 2;
 			this->btnConvertWADFile->Text = L"Convert &WAD File";
 			this->btnConvertWADFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnConvertWADFile_Click);
+			// 
+			// btnConvertImageFile
+			// 
+			this->btnConvertImageFile->Index = 3;
+			this->btnConvertImageFile->Text = L"Convert Image File";
+			this->btnConvertImageFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnConvertImageFile_Click);
 			// 
 			// btnOptionsMenu
 			// 
@@ -2101,7 +2109,7 @@ namespace VTFEdit
 			this->Menu = this->mnuMain;
 			this->MinimumSize = System::Drawing::Size(600, 600);
 			this->Name = L"CVTFEdit";
-			this->Text = L"VTFEdit Reloaded";
+			this->Text = Application::ProductName;
 			this->Closing += gcnew System::ComponentModel::CancelEventHandler(this, &CVTFEdit::CVTFEdit_Closing);
 			this->Load += gcnew System::EventHandler(this, &CVTFEdit::CVTFEdit_Load);
 			this->Move += gcnew System::EventHandler(this, &CVTFEdit::CVTFEdit_Move);
@@ -4218,6 +4226,45 @@ namespace VTFEdit
 		private: System::Void btnConvertWADFile_Click(System::Object ^  sender, System::EventArgs ^  e)
 		{
 			this->WADConvert->ShowDialog();
+		}
+
+		private: System::Void btnConvertImageFile_Click(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (this->dlgImportFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				char cPath[512];
+				vlUInt uiWidth = 0, uiHeight = 0;
+
+				CUtility::StringToCharPointer(
+					static_cast<System::String^>(this->dlgImportFile->FileNames[0]), 
+					cPath, sizeof(cPath));
+
+				if (ilLoadImage(cPath))
+				{
+					uiWidth = (vlUInt)ilGetInteger(IL_IMAGE_WIDTH);
+					uiHeight = (vlUInt)ilGetInteger(IL_IMAGE_HEIGHT);
+
+					// Copy the image data.
+					auto lpImageData = new vlByte[uiWidth * uiHeight * 4];
+					memcpy(lpImageData, ilGetData(), uiWidth * uiHeight * 4);
+
+					if (this->dlgExportFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+					{
+						CUtility::StringToCharPointer(this->dlgExportFile->FileName, cPath, sizeof(cPath));
+
+						auto vtfFile = new VTFLib::CVTFFile();
+						vtfFile->FlipImage(lpImageData, uiWidth, uiHeight);
+						delete vtfFile;
+
+						if (!(ilTexImage(uiWidth, uiHeight, 1, 4, IL_RGBA, IL_UNSIGNED_BYTE, lpImageData) && ilSaveImage(cPath)))
+						{
+							MessageBox::Show("Error saving image.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+						}
+					}
+
+					delete[] lpImageData;
+				}
+			}
 		}
 
 		private: System::Void btnRecentFile_Click(System::Object ^sender, System::EventArgs ^e)

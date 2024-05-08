@@ -83,9 +83,9 @@ namespace VTFEdit
 			// btnOK
 			// 
 			this->btnOK->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnOK->Location = System::Drawing::Point(299, 239);
+			this->btnOK->Location = System::Drawing::Point(187, 164);
 			this->btnOK->Name = L"btnOK";
-			this->btnOK->Size = System::Drawing::Size(309, 38);
+			this->btnOK->Size = System::Drawing::Size(193, 26);
 			this->btnOK->TabIndex = 0;
 			this->btnOK->Text = L"&OK";
 			this->btnOK->Click += gcnew System::EventHandler(this, &CAbout::btnOK_Click);
@@ -102,25 +102,25 @@ namespace VTFEdit
 			this->grpAbout->Controls->Add(this->lnkNemsTools);
 			this->grpAbout->Controls->Add(this->picIcon);
 			this->grpAbout->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpAbout->Location = System::Drawing::Point(10, 9);
+			this->grpAbout->Location = System::Drawing::Point(6, 6);
 			this->grpAbout->Name = L"grpAbout";
-			this->grpAbout->Size = System::Drawing::Size(629, 288);
+			this->grpAbout->Size = System::Drawing::Size(393, 197);
 			this->grpAbout->TabIndex = 1;
 			this->grpAbout->TabStop = false;
 			// 
 			// lblVTFLibVersion
 			// 
-			this->lblVTFLibVersion->Location = System::Drawing::Point(453, 96);
+			this->lblVTFLibVersion->Location = System::Drawing::Point(283, 66);
 			this->lblVTFLibVersion->Name = L"lblVTFLibVersion";
-			this->lblVTFLibVersion->Size = System::Drawing::Size(163, 19);
+			this->lblVTFLibVersion->Size = System::Drawing::Size(102, 13);
 			this->lblVTFLibVersion->TabIndex = 2;
 			// 
 			// linkLabel1
 			// 
 			this->linkLabel1->LinkColor = System::Drawing::Color::Black;
-			this->linkLabel1->Location = System::Drawing::Point(418, 139);
+			this->linkLabel1->Location = System::Drawing::Point(261, 95);
 			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(84, 29);
+			this->linkLabel1->Size = System::Drawing::Size(53, 20);
 			this->linkLabel1->TabIndex = 8;
 			this->linkLabel1->TabStop = true;
 			this->linkLabel1->Text = L"froggi.es";
@@ -130,9 +130,9 @@ namespace VTFEdit
 			// lnkWunderboy
 			// 
 			this->lnkWunderboy->LinkColor = System::Drawing::Color::Black;
-			this->lnkWunderboy->Location = System::Drawing::Point(490, 184);
+			this->lnkWunderboy->Location = System::Drawing::Point(306, 126);
 			this->lnkWunderboy->Name = L"lnkWunderboy";
-			this->lnkWunderboy->Size = System::Drawing::Size(118, 33);
+			this->lnkWunderboy->Size = System::Drawing::Size(74, 22);
 			this->lnkWunderboy->TabIndex = 6;
 			this->lnkWunderboy->TabStop = true;
 			this->lnkWunderboy->Text = L"wunderboy.org";
@@ -141,34 +141,34 @@ namespace VTFEdit
 			// 
 			// lblLanguage
 			// 
-			this->lblLanguage->Location = System::Drawing::Point(284, 120);
+			this->lblLanguage->Location = System::Drawing::Point(178, 82);
 			this->lblLanguage->Name = L"lblLanguage";
-			this->lblLanguage->Size = System::Drawing::Size(163, 19);
+			this->lblLanguage->Size = System::Drawing::Size(101, 13);
 			this->lblLanguage->TabIndex = 4;
 			this->lblLanguage->Text = L"Written In: C++";
 			// 
 			// lblAuthor
 			// 
-			this->lblAuthor->Location = System::Drawing::Point(284, 59);
+			this->lblAuthor->Location = System::Drawing::Point(178, 40);
 			this->lblAuthor->Name = L"lblAuthor";
-			this->lblAuthor->Size = System::Drawing::Size(346, 61);
+			this->lblAuthor->Size = System::Drawing::Size(216, 42);
 			this->lblAuthor->TabIndex = 2;
-			this->lblAuthor->Text = L"Author: Joshua Ashton, Neil Jedrzejewski && Ryan Gregg";
+			this->lblAuthor->Text = L"Author: Starfelll, Joshua Ashton, Neil Jedrzejewski && Ryan Gregg";
 			// 
 			// lblVTFEditVersion
 			// 
-			this->lblVTFEditVersion->Location = System::Drawing::Point(333, 22);
+			this->lblVTFEditVersion->Location = System::Drawing::Point(208, 15);
 			this->lblVTFEditVersion->Name = L"lblVTFEditVersion";
-			this->lblVTFEditVersion->Size = System::Drawing::Size(245, 27);
+			this->lblVTFEditVersion->Size = System::Drawing::Size(153, 19);
 			this->lblVTFEditVersion->TabIndex = 1;
-			this->lblVTFEditVersion->Text = L"VTFEdit Reloaded Version: 2.0.4";
+			this->lblVTFEditVersion->Text = Application::ProductName + L" Version: 2.0.4";
 			// 
 			// lnkNemsTools
 			// 
 			this->lnkNemsTools->LinkColor = System::Drawing::Color::Black;
-			this->lnkNemsTools->Location = System::Drawing::Point(296, 184);
+			this->lnkNemsTools->Location = System::Drawing::Point(185, 126);
 			this->lnkNemsTools->Name = L"lnkNemsTools";
-			this->lnkNemsTools->Size = System::Drawing::Size(130, 33);
+			this->lnkNemsTools->Size = System::Drawing::Size(81, 22);
 			this->lnkNemsTools->TabIndex = 7;
 			this->lnkNemsTools->TabStop = true;
 			this->lnkNemsTools->Text = L"nemesis.twl.net";
@@ -178,16 +178,16 @@ namespace VTFEdit
 			// picIcon
 			// 
 			this->picIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picIcon.Image")));
-			this->picIcon->Location = System::Drawing::Point(10, 18);
+			this->picIcon->Location = System::Drawing::Point(6, 12);
 			this->picIcon->Name = L"picIcon";
-			this->picIcon->Size = System::Drawing::Size(268, 259);
+			this->picIcon->Size = System::Drawing::Size(168, 178);
 			this->picIcon->TabIndex = 0;
 			this->picIcon->TabStop = false;
 			// 
 			// CAbout
 			// 
 			this->AcceptButton = this->btnOK;
-			this->AutoScaleBaseSize = System::Drawing::Size(8, 19);
+			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
 			this->ClientSize = System::Drawing::Size(641, 311);
 			this->Controls->Add(this->grpAbout);
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
@@ -198,7 +198,7 @@ namespace VTFEdit
 			this->Name = L"CAbout";
 			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			this->Text = L"About VTFEdit Reloaded";
+			this->Text = L"About " + Application::ProductName;
 			this->grpAbout->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picIcon))->EndInit();
 			this->ResumeLayout(false);
