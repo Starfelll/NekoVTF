@@ -3821,6 +3821,7 @@ namespace VTFEdit
 		{
 			if(this->VTFFile != 0)
 			{
+				this->dlgSaveVTFFile->FileName = this->RemoveExtension(this->sFileName);
 				if(this->dlgSaveVTFFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 				{
 					this->Save(this->dlgSaveVTFFile->FileName);
@@ -3927,7 +3928,7 @@ namespace VTFEdit
 				{
 					this->SetVTFFile(VTFFile);
 
-					this->FileName = nullptr;
+					this->FileName = this->RemoveExtension(sFileNames[0], false) + ".vtf";
 
 					this->btnSave->Enabled = true;
 					this->toolStripSave->Enabled = true;
@@ -4170,7 +4171,7 @@ namespace VTFEdit
 			}
 		}
 
-		private: System::String ^RemoveExtension(System::String ^sFileName)
+		private: System::String ^RemoveExtension(System::String ^sFileName, bool removeParentDirectory)
 		{
 			if(sFileName == nullptr)
 			{
@@ -4178,7 +4179,7 @@ namespace VTFEdit
 			}
 
 			System::String ^sTempFileName = sFileName;
-			if(sTempFileName->LastIndexOf("\\") != -1)
+			if(removeParentDirectory && sTempFileName->LastIndexOf("\\") != -1)
 			{
 				sTempFileName = sTempFileName->Substring(sTempFileName->LastIndexOf("\\") + 1);
 			}
@@ -4187,6 +4188,11 @@ namespace VTFEdit
 				sTempFileName = sTempFileName->Substring(0, sTempFileName->LastIndexOf("."));
 			}
 			return sTempFileName;
+		}
+
+		private: System::String^ RemoveExtension(System::String^ sFileName)
+		{
+			return RemoveExtension(sFileName, true);
 		}
 
 		private: System::Void btnExport_Click(System::Object ^  sender, System::EventArgs ^  e)
@@ -4230,13 +4236,14 @@ namespace VTFEdit
 
 		private: System::Void btnConvertImageFile_Click(System::Object^ sender, System::EventArgs^ e)
 		{
+			this->dlgImportFile->FileName = "";
 			if (this->dlgImportFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 			{
 				char cPath[512];
 				vlUInt uiWidth = 0, uiHeight = 0;
 
 				CUtility::StringToCharPointer(
-					static_cast<System::String^>(this->dlgImportFile->FileNames[0]), 
+					static_cast<System::String^>(this->dlgImportFile->FileName), 
 					cPath, sizeof(cPath));
 
 				if (ilLoadImage(cPath))
@@ -4248,6 +4255,7 @@ namespace VTFEdit
 					auto lpImageData = new vlByte[uiWidth * uiHeight * 4];
 					memcpy(lpImageData, ilGetData(), uiWidth * uiHeight * 4);
 
+					this->dlgExportFile->FileName = this->RemoveExtension(this->dlgImportFile->FileName);
 					if (this->dlgExportFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 					{
 						CUtility::StringToCharPointer(this->dlgExportFile->FileName, cPath, sizeof(cPath));
