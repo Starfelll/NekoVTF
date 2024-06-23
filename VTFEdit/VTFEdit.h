@@ -4246,7 +4246,7 @@ namespace VTFEdit
 					static_cast<System::String^>(this->dlgImportFile->FileName), 
 					cPath, sizeof(cPath));
 
-				if (ilLoadImage(cPath))
+				if (ilLoadImage(cPath) && ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
 				{
 					uiWidth = (vlUInt)ilGetInteger(IL_IMAGE_WIDTH);
 					uiHeight = (vlUInt)ilGetInteger(IL_IMAGE_HEIGHT);
