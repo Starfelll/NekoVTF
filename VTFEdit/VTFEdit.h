@@ -3838,6 +3838,7 @@ namespace VTFEdit
 
 		private: void Import(array<System::String ^>^ sFileNames)
 		{
+			this->Activate();
 			if(this->Options->ShowDialog() != System::Windows::Forms::DialogResult::OK)
 			{
 				return;
