@@ -627,7 +627,12 @@ namespace VTFEdit
 
 							if(ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
 							{
-								VTFCreateOptions.ImageFormat = bHasAlpha ? Options->AlphaFormat : Options->NormalFormat;
+								if (bHasAlpha && Options->AlphaFormat != VTFImageFormat::IMAGE_FORMAT_NONE) {
+									VTFCreateOptions.ImageFormat = Options->AlphaFormat;
+								}
+								else {
+									VTFCreateOptions.ImageFormat = Options->NormalFormat;
+								}
 
 								if(VTFFile.Create((vlUInt)ilGetInteger(IL_IMAGE_WIDTH), (vlUInt)ilGetInteger(IL_IMAGE_HEIGHT), ilGetData(), VTFCreateOptions) != vlFalse && CVTFFileUtility::CreateResources(Options, &VTFFile))
 								{

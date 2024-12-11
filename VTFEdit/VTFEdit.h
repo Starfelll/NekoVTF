@@ -3921,7 +3921,12 @@ namespace VTFEdit
 
 				SVTFCreateOptions VTFCreateOptions = CVTFFileUtility::GetCreateOptions(this->Options);
 
-				VTFCreateOptions.ImageFormat = bHasAlpha ? Options->AlphaFormat : Options->NormalFormat;
+				if (bHasAlpha && Options->AlphaFormat != VTFImageFormat::IMAGE_FORMAT_NONE) {
+					VTFCreateOptions.ImageFormat = Options->AlphaFormat;
+				}
+				else {
+					VTFCreateOptions.ImageFormat = Options->NormalFormat;
+				}
 
 				// Create the .vtf file.
 				if(VTFFile->Create(uiWidth, uiHeight, uiFrames, uiFaces, uiSlices, lpImageData, VTFCreateOptions) != vlFalse && CVTFFileUtility::CreateResources(Options, VTFFile))
